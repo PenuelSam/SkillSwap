@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #0E0E0E;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* In your global CSS (e.g., globals.css or a new utilities file) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -19,8 +22,208 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+
+
+@font-face {
+  font-family: 'HelveticaLight';
+  src: local('Helvetica now display'), local('Helvetica-Light'), 
+      url('../assets/font/HelveticaNowDisplay-Light.woff2') format('woff2'),
+      url('../assets/font/HelveticaNowDisplay-Light.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaBlack';
+  src: local('Helvetica now display'), local('Helvetica-Black'), 
+      url('../assets/font/HelveticaNowDisplay-Black.woff2') format('woff2'),
+      url('../assets/font/HelveticaNowDisplay-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'HelveticaMid';
+  src: local('Helvetica now display'), local('Helvetica-Medium'), 
+      url('../assets/font/HelveticaNowDisplay-Medium.woff2') format('woff2'),
+      url('../assets/font/HelveticaNowDisplay-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaReg';
+  src: local('Helvetica now display'), local('Helvetica-Regular'), 
+      url('../assets/font/HelveticaNowDisplay-Regular.woff2') format('woff2'),
+      url('../assets/font/HelveticaNowDisplay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HelveticaBold';
+  src: local('Helvetica now display'), local('Helvetica-Bold'), 
+      url('../assets/font/HelveticaNowDisplay-Bold.woff') format('woff2'),
+      url('../assets/font/HelveticaNowDisplay-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BomberUrban';
+  src: local('Bomber Urban Regular'), local('Bomber-Urban-Regular'), 
+      url('../assets/font/bomberurbanregular-8m1ym-webfont.woff2') format('woff2'),
+      url('../assets/font/bomberurbanregular-8m1ym-webfont.woff') format('woff');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'mtvgravity';
+  src: local('mtvgravity regular'), local('mtvgravity-regular'), 
+      url('../assets/font/mtvgravitygroteskext-medium-webfont.woff2') format('woff2'),
+      url('../assets/font/mtvgravitygroteskext-medium-webfont.woff') format('woff');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'inter';
+  src: local('inter-black'), local('inter-black'), 
+      url('../assets/font/Inter-Black.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'interBold';
+  src: local('inter Bold'), local('inter-Bold'), 
+      url('../assets/font/Inter-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'interDisplayBlack';
+  src: local('inter-display-black'), local('inter-display-black'), 
+      url('../assets/font/InterDisplay-Black.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'interDisplayLight';
+  src: local('inter display light'), local('inter-display-light'), 
+      url('../assets/font/InterDisplay-Light.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'interDisplayMedium';
+  src: local('inter display medium'), local('inter-display-medium'), 
+      url('../assets/font/InterDisplay-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'interDisplayRegular';
+  src: local('inter display regular'), local('inter-display-regular'), 
+      url('../assets/font/InterDisplay-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'interDisplaySemiBold';
+  src: local('inter display semiBold'), local('inter-display-semiBold'), 
+      url('../assets/font/InterDisplay-SemiBold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'interDisplayThin';
+  src: local('inter display thin'), local('inter-display-thin'), 
+      url('../assets/font/InterDisplay-Thin.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'interDisplayItalic';
+  src: local('inter display italic'), local('inter-display-italic'), 
+      url('../assets/font/InterDisplay-Italic.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@theme {
+  --font-HelveticaLight: 'HelveticaLight';
+  --font-HelveticaBlack: 'HelveticaBlack';
+  --font-HelveticaBold: 'HelveticaBold';
+  --font-HelveticaMid: 'HelveticaMid';
+  --font-HelveticaReg: 'HelveticaReg';
+  --font-BomberUrban: 'BomberUrban';
+  --font-mtvgravity: 'mtvgravity';
+  --font-inter: 'inter';
+  --font-interBold: 'interBold';
+  --font-interDisplayBlack: 'interDisplayBlack';
+  --font-interDisplayLight: 'interDisplayLight';
+  --font-interDisplayMedium: 'interDisplayMedium';
+  --font-interDisplayRegular: 'interDisplayRegular';
+  --font-interDisplaySemiBold: 'interDisplaySemiBold';
+  --font-interDisplayThin: 'interDisplayThin';
+  --font-interDisplayItalic: 'interDisplayItalic';
+}
+
+body{
+  /* background: #f8f8f8; */
+  background: #fff
+}
+
+
+
+
+.grad{
+  background: linear-gradient(to bottom, #E1E4E7, #9BA8B4, #4B5D6E);
+}
+
+.grad2{
+  background: linear-gradient(to bottom, #2C3E50, #546A76, #807A8A);
+}
+
+.blueHighlight{
+  background-color: rgba(0, 122, 255, 0.6);
+}
+
+.mutedGray{
+  background-color: hsla(240, 2%, 57%, 0.70);
+}
+
+.tealHighlight{
+  background-color: rgba(52, 199, 89, 0.6);
+}
+
+.purpleHighlight{
+  background-color: rgba(175, 82, 222, 0.6);
+}
+
+.orangeHighlight{
+  background-color: rgba(255, 149, 0, 0.6);
+}
+
+
+.scrollable-messages {
+  overflow-y: auto;
+  height: calc(100vh - 200px); /* adjust the height as needed */
 }
