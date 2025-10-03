@@ -52,20 +52,20 @@ const [selectedConversation, setSelectedConversation] = useState<Conversation | 
 
   return (
     <div className={`
-            fixed top-0 left-0 z-50 py-20 flex flex-col items-center gap-5 h-full w-[450px] overflow-x-hidden bg-white border-r border-gray-200
+            hidden  fixed top-0 left-0 z-50 border-l py-20 md:flex flex-col items-center gap-5 h-full w-[350px] overflow-x-hidden bg-white border-r border-gray-200
             transform transition-transform duration-300 ease-in-out lg:translate-x-0
             lg:static lg:z-auto
           `}>
 
-      <div className="w-full h-full bg-white px-10">
+      <div className="w-full h-full bg-white px-4">
       {/* Other sidebar content like chat toggle */}
       <MatchSuggestions userId={userId} />
     </div>
       {/* Chat Toggle Button fixed at bottom right */}
       <div className="fixed bottom-0 left-4 right-4 z-50">
         {!isChatExpanded ? (
-          <div className='flex items-center justify-between shadow-lg shadow-gray-300 bg-gray-50 w-full p-4  rounded-t-2xl'>
-            <div><p className="md:text-[25px] text-[28px] md:leading-[1.8] leading-[1.6] tracking-tight font-HelveticaBold">Messages</p></div>
+          <div className='flex items-center justify-between shadow-2xl  bg-white w-full p-4  rounded-t-2xl'>
+            <div><p className=" text-[18px] md:leading-[1.8] leading-[1.6] tracking-tight font-HelveticaBold">Messages</p></div>
             <MdOutlineKeyboardDoubleArrowUp fontSize={28} className='cursor-pointer'  onClick={() => setIsChatExpanded(true)}/>
           </div>
         ) : (
@@ -89,12 +89,12 @@ const [selectedConversation, setSelectedConversation] = useState<Conversation | 
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="fixed bottom-0 right-0 top-5 w-full bg-white shadow-lg   flex flex-col z-40"
+            className="fixed bottom-0 right-0 top-10 w-full bg-white shadow-lg   flex flex-col z-40"
           >
             {/* Show ConversationList if no conversation selected */}
             {!selectedConversation ? (
               <>
-                <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+                <div className="p-4 border-b border-gray-200 shadow-2xl  flex justify-between items-center">
                   <h2 className="text-xl font-semibold">Chat</h2>
                   <button
                     onClick={() => setIsChatExpanded(false)}

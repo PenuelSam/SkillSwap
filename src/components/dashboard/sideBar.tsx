@@ -10,6 +10,7 @@ import { GiEnvelope } from "react-icons/gi";
 import {AiOutlineUsergroupAdd} from "react-icons/ai";
 import { FaStar, FaHandshake, FaRegStar } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
+import { HiOutlineEnvelope } from "react-icons/hi2";
 import { supabaseClient } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 
@@ -33,7 +34,7 @@ export const Sidebar = ({
     { icon: BiSearch, label: "Explore", key: "/" },
     { icon: FaRegStar, label: "My Skills", key: "skills" },
     { icon: AiOutlineUsergroupAdd, label: "Matches", key: "matches" },
-    { icon: GiEnvelope, label: "Messages", key: "message" },
+    { icon: HiOutlineEnvelope, label: "Messages", key: "message" },
     { icon: BsPerson, label: "Profile", key: "profile" },
   ];
 
@@ -55,15 +56,15 @@ export const Sidebar = ({
       {/* Sidebar */}
       <aside
         className={`
-        fixed top-0 left-0 z-50 h-full w-64 bg-white border-r border-gray-200
+        fixed md:top-0 bottom-0 right-0 left-0 z-50 md:h-full md:w-64 w-full bg-white border-r border-gray-200
         transform transition-transform duration-300 ease-in-out lg:translate-x-0
-        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        
         lg:static lg:z-auto
       `}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex md:flex-col md:h-full">
           {/* Logo */}
-          <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
+          <div className="hidden md:flex items-center justify-between  h-16 px-6 border-b border-gray-200">
             <h1 className="text-xl font-HelveticaBlack text-black">SkillSwap</h1>
             <button
               onClick={() => setIsOpen(false)}
@@ -74,7 +75,7 @@ export const Sidebar = ({
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 flex flex-col gap-3">
+          <nav className="flex-1 px-4 md:py-4 flex md:flex-col ">
             {navigationItems.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -85,7 +86,7 @@ export const Sidebar = ({
                       setIsOpen(false);
                     }}
                     className={`
-                    w-full flex items-center px-3 py-2.5 text-sm font-HelveticaLight md:text-[18px] text-[20px] rounded-lg
+                    w-full flex items-center px-3 py-2.5 text-sm font-HelveticaLight md:text-[16px] text-[20px] rounded-lg
                     transition-colors duration-200 cursor-pointer
                     ${
                       currentPage === item.key
@@ -94,8 +95,9 @@ export const Sidebar = ({
                     }
                   `}
                   >
-                    <Icon fontSize={30} className="mr-3" />
-                    {item.label}
+                    <Icon fontSize={30} className="mr-3 md:hidden" />
+                    <Icon fontSize={28} className="mr-3 hidden md:inline" />
+                    <span className="hidden md:inline">{item.label}</span>
                   </button>
                 </Link>
               );
@@ -103,7 +105,7 @@ export const Sidebar = ({
           </nav>
 
           {/* Logout button at bottom */}
-          <div className="px-4 py-4 border-t border-gray-200">
+          <div className="px-4 py-4 hidden md:flex border-t border-gray-200">
             <button
               onClick={handleLogout}
               className="w-full flex items-center px-3 cursor-pointer py-2.5 text-sm font-medium text-red-600 rounded-lg hover:bg-red-50 transition-colors"

@@ -20,6 +20,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
    const user = useUser();
 const showRightSidebar = !pathname.startsWith('/dashboard/message');
 
+
   const currentUserId = user?.id || ''; // or handle null user case
 
 const [isChatExpanded, setIsChatExpanded] = useState(false);
@@ -27,7 +28,7 @@ const [isChatExpanded, setIsChatExpanded] = useState(false);
 const [currentPage, setCurrentPage] = useState("overview");
   return (
     <div className="min-h-screen bg-gray-50 font-inter">
-      <div className="flex h-screen">
+      <div className="flex md:flex-row flex-col h-screen">
         {/* Sidebar */}
         <Sidebar 
         isOpen={sidebarOpen}
@@ -39,14 +40,16 @@ const [currentPage, setCurrentPage] = useState("overview");
         {/* Main Content Area */}
         <div className="flex flex-col flex-1">
           {/* Top Navigation */}
+           {showRightSidebar && (
           <TopBar 
            pageTitle={pageTitles[currentPage] || "Overview"} 
             sidebarOpen={sidebarOpen}
             setSidebarOpen={setSidebarOpen}
           />
+           )}
 
           {/* Dynamic Page Content */}
-          <main className="flex-1 overflow-hidden">{children}</main>
+          <main className="flex-1 overflow-hidden ">{children}</main>
         </div>
 
         {showRightSidebar && (

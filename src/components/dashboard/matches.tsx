@@ -60,25 +60,25 @@ export default function MatchesPage({ userId }: { userId: string }) {
   if (loading) return <p>Loading matches...</p>;
 
   return (
-    <div className="w-full mx-auto lg:px-6 ">
-      <h1 className="md:text-[36px] text-[28px] md:leading-[1.8] leading-[1.6] tracking-tight font-HelveticaBold">
+    <div className="w-full mx-auto lg:px-6 h-full p-4 pb-20 pt-5 overflow-y-auto ">
+      <h1 className="md:text-[28px] text-[28px] md:leading-[1.5] leading-[1.6] tracking-tight font-HelveticaBold">
         Skill Matches
       </h1>
-      <p className="md:text-[18px] text-[16px] md:leading-[1.8] leading-[1.6] font-HelveticaLight mb-8">
+      <p className="md:text-[16px] text-[16px] md:leading-[1.4] leading-[1.6] font-HelveticaLight mb-3">
         People looking for skills you offer
       </p>
 
       {/* Sorting dropdown */}
       {matches.length > 0 && (
         <div className="mb-6 flex items-center">
-          <label className="md:text-[18px] text-[16px] font-HelveticaLight flex items-center mr-4">
+          <label className="md:text-[14px] text-[16px] font-HelveticaLight flex items-center mr-4">
             <CgSortAz fontSize={30}/>
             Sort by:
           </label>
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as "score" | "tags")}
-            className="cursor-pointer border border-[#111] rounded-lg px-3 py-1 md:text-[18px] text-[16px] font-HelveticaLight"
+            className="cursor-pointer border border-[#111] rounded-lg px-3 py-1 md:text-[14px] text-[16px] font-HelveticaLight"
           >
             <option value="score">Score</option>
             <option value="tags">Tags</option>
@@ -126,14 +126,14 @@ export default function MatchesPage({ userId }: { userId: string }) {
                   <div>
                     <Link
       href={`/u/${match.offer_display_name || "user"}-${match.offer_user_id}`}
-      className="md:text-[25px] text-[18px] tracking-tight font-HelveticaMid hover:underline"
+      className="md:text-[18px] text-[18px] tracking-tight font-HelveticaMid hover:underline"
     >
       {match.offer_display_name || `User ${match.offer_user_id.slice(0, 6)}...`}
     </Link>
-                    <p className="md:text-[14px] text-[12px] font-HelveticaLight">
+                    <p className="md:text-[12px] text-[12px] font-HelveticaLight">
                       Active recently
                     </p>
-                    <p className="text-green-600 font-semibold mb-1 md:text-[14px] text-[12px] hidden md:flex md:mt-2">
+                    <p className="text-green-600 font-semibold mb-1 md:text-[12px] text-[12px] hidden md:flex md:mt-2">
                       {scorePercent}% match
                     </p>
                   </div>
@@ -146,7 +146,7 @@ export default function MatchesPage({ userId }: { userId: string }) {
                       {/* <p className="text-[12px] md:text-[14px] text-[#007AFF] md:w-20 md:flex items-center justify-center md:bg-[#007bff50] rounded-lg hidden px-2 py-1 font-HelveticaMid">
                         Wants
                       </p> */}
-                      <h2 className="font-HelveticaMid text-[14px] md:text-[18px]">
+                      <h2 className="font-HelveticaMid text-[14px] md:text-[16px]">
                         {match.want_title}
                       </h2>
                     </div>
@@ -162,29 +162,29 @@ export default function MatchesPage({ userId }: { userId: string }) {
                       {/* <p className="text-[12px] md:text-[14px] rounded-lg text-[#007AFF] w-20 md:flex items-center justify-center bg-[#007bff50] px-2 py-1 hidden font-HelveticaMid">
                         Offers
                       </p> */}
-                      <h2 className="font-HelveticaMid text-[14px] md:text-[18px]">
+                      <h2 className="font-HelveticaMid text-[14px] md:text-[16px]">
                         {match.offer_title}
                       </h2>
                     </div>
                   </div>
 
                   {/* Tag highlighting */}
-                  {overlappingTags.length > 0 && (
-                    <p className="md:text-[14px] text-[12px]  font-HelveticaBold mt-2">
+                  {/* {overlappingTags.length > 0 && (
+                    <p className="md:text-[12px] text-[12px]  font-HelveticaReg mt-2">
                       Matched on tags:{" "}
-                      <span className="md:text-[14px] text-[12px] rounded-lg capitalize font-HelveticaMid">
+                      <span className="md:text-[12px] text-[12px] rounded-lg capitalize font-HelveticaReg">
                         {overlappingTags.join(", ")}
                       </span>
                     </p>
-                  )}
+                  )} */}
                 </div>
 
                 {/* Right: Connect button */}
                 <div className="flex items-end justify-between">
-                  <p className="text-green-600 font-semibold mb-1 md:text-[14px] text-[12px] flex md:hidden">
+                  <p className="text-green-600 font-semibold mb-1 md:text-[12px] text-[12px] flex md:hidden">
                     {scorePercent}% match
                   </p>
-                  <button className="border border-[#111] px-4 py-1 rounded-lg font-HelveticaLight cursor-pointer hover:bg-black hover:text-white hover:border-none md:text-[18px] text-[16px] transition">
+                  <button className="border border-[#111] px-4 py-1 rounded-lg font-HelveticaLight cursor-pointer hover:bg-black hover:text-white hover:border-none md:text-[16px] text-[16px] transition">
                     Connect
                   </button>
                 </div>

@@ -65,11 +65,11 @@ export default function ProfilePage({ userId }: { userId?: string }) {
   const offers = skills.filter((s) => s.type === "offer");
 
   return (
-    <div className="w-full md:bg-white bg-gray-50 p-4 ">
+    <div className="w-full md:bg-white bg-gray-50 p-4 pb-32 md:pb-10 overflow-y-scroll h-full">
       {/* 🔹 White profile card */}
-      <div className="w-full mx-auto bg-white rounded-2xl shadow p-6 flex flex-col md:flex-row items-start gap-6">
+      <div className="w-full mx-auto bg-white rounded-2xl shadow  p-6 flex flex-col md:flex-row items-start gap-3">
         {/* Avatar */}
-        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
+        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
           {profile.avatar_url ? (
             <Image
               src={profile.avatar_url}
@@ -88,16 +88,16 @@ export default function ProfilePage({ userId }: { userId?: string }) {
 
         {/* Info */}
         <div className="flex-1">
-          <h1 className="md:text-[36px] text-[28px] tracking-tight font-HelveticaBold">
+          <h1 className="md:text-[25px] text-[25px] tracking-tight font-HelveticaBold">
             {profile.display_name || "Anonymous"}
           </h1>
-          <p className="md:text-[18px] text-[16px] font-HelveticaLight">
+          <p className="md:text-[16px] text-[16px] font-HelveticaLight">
             @{profile.display_name}
           </p>
-          <p className="md:text-[18px] text-[16px] font-HelveticaLight">
+          <p className="md:text-[16px] text-[16px] font-HelveticaLight">
             {profile.bio}
           </p>
-          <p className="md:text-[18px] text-[16px] font-HelveticaLight">
+          <p className="md:text-[16px] text-[16px] font-HelveticaLight">
             {profile.location}
           </p>
 
@@ -109,14 +109,14 @@ export default function ProfilePage({ userId }: { userId?: string }) {
 
         {/* Actions */}
         <Link href={`/dashboard/profile/edit`} className="flex gap-3 ml-auto">
-          <button className="px-4 py-2 rounded-lg bg-black text-white hover:bg-gray-800 cursor-pointer">
+          <button className="px-4 py-2 rounded-lg font-HelveticaMid bg-black text-white hover:bg-gray-800 cursor-pointer">
             Edit Profile
           </button>
         </Link>
       </div>
 
       {/* 🔹 Activity / Highlights */}
-      <div className="w-full mx-auto mt-8 bg-white p-6 rounded-xl shadow flex justify-around text-center">
+      <div className="w-full mx-auto mt-8 bg-white p-6 rounded-xl shadow  flex justify-around text-center">
         <div>
           <p className="text-2xl font-HelveticaBold">{offers.length}</p>
           <p className="text-sm font-HelveticaLight text-gray-500">Skills Offered</p>
@@ -133,17 +133,17 @@ export default function ProfilePage({ userId }: { userId?: string }) {
 
       {/* 🔹 Bio & About */}
       <div className="w-full mx-auto mt-8 grid md:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h2 className="md:text-[28px] text-[20px] tracking-tight font-HelveticaBold">
+        <div className="bg-white p-6 rounded-xl shadow flex flex-col gap-3 ">
+          <h2 className="md:text-[20px] text-[20px] tracking-tight font-HelveticaMid">
             About
           </h2>
-          <p className="md:text-[18px] text-[16px] font-HelveticaLight">
+          <p className="md:text-[16px] text-[16px] font-HelveticaLight">
             {profile.about || profile.bio || "No about info provided."}
           </p>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h2 className="md:text-[28px] text-[20px] font-HelveticaBold">Socials</h2>
+        <div className="bg-white p-6 rounded-xl shadow ">
+          <h2 className="md:text-[20px] text-[20px] font-HelveticaMid">Socials</h2>
           <div className="flex gap-4 mt-2">
             {profile.socials?.linkedin && (
               <a href={profile.socials.linkedin} className="text-blue-600">
@@ -161,13 +161,13 @@ export default function ProfilePage({ userId }: { userId?: string }) {
 
       {/* 🔹 Skills */}
       <div className="w-full mx-auto mt-8 grid md:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h2 className="md:text-[28px] text-[20px] font-HelveticaBold">Skills to Teach</h2>
-          <div className="flex flex-wrap gap-2">
+        <div className="bg-white p-6 rounded-xl flex flex-col gap-3 shadow ">
+          <h2 className="md:text-[20px] text-[20px] font-HelveticaMid">Skills to Teach</h2>
+          <div className="flex flex-wrap gap-2 ">
             {offers.flatMap((s) => s.tags || []).map((tag) => (
               <span
                 key={tag}
-                className="md:text-[14px] text-[12px] font-HelveticaLight px-3 py-1 rounded-full border text-gray-700"
+                className="md:text-[14px] text-[14px] font-HelveticaLight px-3 py-1 rounded-full border text-gray-700"
               >
                 {tag}
               </span>
@@ -175,13 +175,13 @@ export default function ProfilePage({ userId }: { userId?: string }) {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h2 className="md:text-[28px] text-[20px] font-HelveticaBold">Skills to Learn</h2>
-          <div className="flex flex-wrap gap-2">
+        <div className="bg-white p-6 rounded-xl flex flex-col gap-3 shadow ">
+          <h2 className="md:text-[20px] text-[20px] font-HelveticaMid">Skills to Learn</h2>
+          <div className="flex flex-wrap gap-2 ">
             {wants.flatMap((s) => s.tags || []).map((tag) => (
               <span
                 key={tag}
-                className="md:text-[14px] text-[12px] font-HelveticaLight px-3 py-1 rounded-full border text-gray-700"
+                className="md:text-[14px] text-[14px] font-HelveticaLight px-3 py-1 rounded-full border text-gray-700"
               >
                 {tag}
               </span>
@@ -191,8 +191,8 @@ export default function ProfilePage({ userId }: { userId?: string }) {
       </div>
 
       {/* 🔹 Looking For */}
-      <div className="w-full mx-auto mt-8 bg-white p-6 rounded-xl shadow">
-        <h2 className="md:text-[28px] text-[20px] font-HelveticaBold mb-2">Looking For</h2>
+      <div className="w-full mx-auto mt-8 bg-white p-6 rounded-xl shadow ">
+        <h2 className="md:text-[20px] text-[20px] font-HelveticaMid mb-2">Looking For</h2>
         <p className="md:text-[16px] text-[14px] font-HelveticaLight text-gray-700">
           {wants.length > 0
             ? `Looking for people who can teach ${wants.flatMap((s) => s.tags || []).join(", ")}`

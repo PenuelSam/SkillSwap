@@ -57,13 +57,13 @@ const { data, error } = await supabaseClient
   };
 
   return (
-    <main className="flex-1 overflow-auto  bg-gray-50">
+    <main className="flex-1 overflow-auto h-full p-4 pb-20 pt-5 bg-gray-50">
       <div className="w-full mx-auto   lg:px-6 relative">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="md:text-[36px] text-[28px] md:leading-[1.8] leading-[1.6] tracking-tight font-HelveticaBold">My Skills</h1>
-            <p className="md:text-[18px] text-[16px] md:leading-[1.8] leading-[1.6] font-HelveticaLight">
+            <h1 className="md:text-[28px] text-[20px] md:leading-[1.5] leading-[1.6] tracking-tight font-HelveticaBold">My Skills</h1>
+            <p className="md:text-[16px] text-[16px] md:leading-[1.8] leading-[1.6] font-HelveticaLight">
               Manage the skills you offer and want to learn
             </p>
           </div>
@@ -76,7 +76,7 @@ const { data, error } = await supabaseClient
           </button>
            <button
             onClick={() => setAddModalOpen(true)}
-            className="fixed bottom-5 right-5 flex items-center px-4 py-4 md:hidden text-white bg-black  rounded-lg cursor-pointer"
+            className="fixed bottom-15 right-5 flex items-center px-4 py-4 md:hidden text-white bg-black  rounded-lg cursor-pointer"
           >
             <BiPlus size={20} />
           </button>
@@ -94,14 +94,14 @@ const { data, error } = await supabaseClient
             {skills.map((skill) => (
               <div
                 key={skill.id}
-                className="bg-white rounded-2xl shadow-sm flex flex-col gap-4  border-gray-200 p-6"
+                className="bg-white rounded-2xl shadow-sm flex flex-col gap-4 h-full border-gray-200 p-4"
               >
                 <div className="flex justify-between items-start ">
                   <div className="flex-1">
-                    <h2 className="md:text-[25px] text-[20px] tracking-tight font-HelveticaMid">
+                    <h2 className="md:text-[20px] text-[20px] tracking-tight font-HelveticaMid">
                       {skill.title}
                     </h2>
-                    <p className="md:text-[18px] text-[16px] md:leading-[1.8] leading-[1.6] tracking-tight font-HelveticaLight">
+                    <p className="md:text-[16px] text-[16px] md:leading-[1.8] leading-[1.6] tracking-tight font-HelveticaLight">
                       {skill.description}
                     </p>
                   </div>
@@ -117,22 +117,22 @@ const { data, error } = await supabaseClient
                 </div>
 
                 <div className="flex items-center justify-between ">
-                  <span className="text-[12px] md:text-[14px] rounded-lg text-[#007AFF]  bg-[#007bff2a] px-2 py-1  font-HelveticaMid">
+                  <span className="text-[12px] md:text-[13px] rounded-lg text-[#007AFF]  bg-[#007bff2a] px-2 py-1  font-HelveticaMid">
                     {skill.type === "offer" ? "Offer" : "Want"}
                   </span>
-                  <span className="md:text-[14px] text-[12px] rounded-lg capitalize font-HelveticaMid">
+                  <span className="md:text-[13px] text-[12px] rounded-lg capitalize font-HelveticaMid">
                     {skill.tags?.join(", ")}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between mt-5">
-                  <span className="md:text-[14px] text-[12px] font-HelveticaLight">
+                  <span className="md:text-[13px] text-[12px] font-HelveticaLight">
                     {skill.created_at
                       ? new Date(skill.created_at).toLocaleDateString()
                       : "Unknown date"}
                   </span>
                   <button
-                    className="border border-[#111] px-4 py-1 rounded-lg font-HelveticaLight  cursor-pointer hover:bg-black hover:text-white hover:border-none md:text-[14px] text-[12px] transition"
+                    className="border border-[#111] px-4 py-1 rounded-lg font-HelveticaLight  cursor-pointer hover:bg-black hover:text-white hover:border-none md:text-[13px] text-[12px] transition"
                     onClick={() => {
                       setSelectedSkill(skill);
                       setViewModalOpen(true);

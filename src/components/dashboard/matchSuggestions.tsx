@@ -81,7 +81,7 @@ export default function MatchSuggestions({ userId }: { userId: string }) {
 
   return (
     <div className="flex flex-col  rounded-lg shadow-sm bg-gray-50  gap-4 p-4 overflow-y-auto">
-        <h2 className="md:text-[24px] text-[20px] md:leading-[1.8] leading-[1.6] tracking-tight font-HelveticaBold">
+        <h2 className="md:text-[18px] text-[16px] md:leading-[1.8] leading-[1.6] tracking-tight font-HelveticaBold">
           Who you match with
         </h2>
       {matches.map((match, idx) => {
@@ -92,13 +92,13 @@ export default function MatchSuggestions({ userId }: { userId: string }) {
             className="flex items-center gap-4 p-2 "
           >
             <Link href={`/dashboard/profile/${match.offer_user_id}`} className="flex items-center gap-4 flex-1">
-              <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200">
                 {profile?.avatar_url ? (
                   <Image
                     src={profile.avatar_url}
                     alt={profile?.display_name || "User Avatar"}
-                    width={48}
-                    height={48}
+                    width={40}
+                    height={40}
                     className="w-full h-full object-cover"
                     unoptimized={false}
                   />
@@ -107,14 +107,14 @@ export default function MatchSuggestions({ userId }: { userId: string }) {
                 )}
               </div>
               <div>
-                <p className="text-base font-semibold text-gray-900">
+                <p className="text-base font-HelveticaBold text-gray-900">
                   {profile?.display_name || "Anonymous"}
                 </p>
               </div>
             </Link>
             <button
               type="button"
-              className="px-3 py-1 bg-black text-white rounded-full hover:bg-gray-800 text-sm"
+              className="px-3 py-1 bg-black text-white font-HelveticaMid rounded-full hover:bg-gray-800 text-sm"
               onClick={() => alert(`Connect feature not implemented yet for ${match.offer_user_id}`)}
             >
               Connect
@@ -124,7 +124,7 @@ export default function MatchSuggestions({ userId }: { userId: string }) {
       })}
       <div>
         <Link href="/dashboard/matches">
-            <p className="text-sm text-gray-500 hover:underline cursor-pointer">Show more</p>
+            <p className="text-sm text-gray-500 hover:underline cursor-pointer font-HelveticaMid">Show more</p>
         </Link>
       </div>
     </div>

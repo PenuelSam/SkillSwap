@@ -12,7 +12,7 @@ export default function ChatPage() {
   const handleBackToConversations = () => setSelectedConversation(null);
 
   return (
-    <div className="h-full w-full flex bg-gray-50 overflow-hidden">
+    <div className="h-full w-full flex bg-gray-50 ">
       {/* Sidebar: visible on md and up, or visible on mobile only if no selected conversation */}
       <div className={`bg-white border-r border-gray-200 overflow-y-auto
         ${selectedConversation ? 'hidden md:flex md:w-80' : 'flex w-full md:w-80'}`}
