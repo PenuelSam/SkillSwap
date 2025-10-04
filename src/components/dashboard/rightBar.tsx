@@ -94,7 +94,7 @@ const [selectedConversation, setSelectedConversation] = useState<Conversation | 
             {/* Show ConversationList if no conversation selected */}
             {!selectedConversation ? (
               <>
-                <div className="p-4 border-b border-gray-200 shadow-2xl  flex justify-between items-center">
+                {/* <div className="p-4 border-b border-gray-200 shadow-2xl  flex justify-between items-center">
                   <h2 className="text-xl font-semibold">Chat</h2>
                   <button
                     onClick={() => setIsChatExpanded(false)}
@@ -103,7 +103,7 @@ const [selectedConversation, setSelectedConversation] = useState<Conversation | 
                   >
                     ×
                   </button>
-                </div>
+                </div> */}
                 <ConversationList
                   onSelectConversation={setSelectedConversation}
                   selectedConversationId={selectedConversation?.id}

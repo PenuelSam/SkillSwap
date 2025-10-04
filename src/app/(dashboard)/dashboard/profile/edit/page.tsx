@@ -8,6 +8,7 @@ import { updateProfileAction } from "@/lib/actions/onboarding";
 import { supabaseClient } from "@/lib/supabaseClient";
 import { useTransition, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function EditProfileForm({ profile }: { profile: ProfileSchema | null }) {
   const [isPending, startTransition] = useTransition();
@@ -64,78 +65,121 @@ export default function EditProfileForm({ profile }: { profile: ProfileSchema | 
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 p-6 bg-white rounded-xl shadow">
-      <h2 className="md:text-[28px] text-[20px] tracking-tight font-HelveticaBold">Edit Profile</h2>
+  <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto pb-20 md:my-6 p-6   md:p-8 md:pb-4 bg-white md:rounded-2xl shadow-sm">
+  <h2 className="text-xl md:text-2xl font-bold  font-HelveticaMid mb-6">Edit Profile</h2>
 
-      {/* Avatar Upload */}
-      <div>
-        <label className="md:text-[18px] text-[16px] tracking-tight font-HelveticaMid">Avatar</label>
-        <input
-          type="file"
-          accept="image/*"
-          className="md:text-[18px] text-[16px] font-HelveticaLight"
-          onChange={(e) => {
-            if (e.target.files?.[0]) uploadAvatar(e.target.files[0]);
-          }}
+  <div className="w-full md:h-[350px] md:overflow-y-auto">
+  {/* Avatar Upload */}
+  <div className="flex flex-col items-center mb-6">
+    <label className="text-sm font-medium font-HelveticaMid mb-2">Avatar</label>
+    <input
+      type="file"
+      accept="image/*"
+      className="hidden"
+      id="avatar-upload"
+      onChange={(e) => {
+        if (e.target.files?.[0]) uploadAvatar(e.target.files[0]);
+      }}
+    />
+    <label
+      htmlFor="avatar-upload"
+      className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center cursor-pointer"
+    >
+      {watch("avatar_url") ? (
+        <Image
+          src={watch("avatar_url") || ""}
+          alt="Avatar Preview"
+          className="w-full h-full rounded-full object-cover"
+          width={96}
+          height={96}
+          quality={100}
+          unoptimized={true}
         />
-        {uploading && <p className="md:text-[18px] text-[16px] font-HelveticaLight text-gray-500">Uploading...</p>}
-        {watch("avatar_url") && (
-          <Image
-            src={watch("avatar_url") || ""}
-            alt="Avatar Preview"
-            className="mt-2 w-20 h-20 rounded-full object-cover"
-            width={80}
-            height={80}
-            quality={100}
-            unoptimized={true}
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6 text-gray-400"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
           />
-        )}
-      </div>
+        </svg>
+      )}
+    </label>
+    {uploading && <p className="text-sm text-gray-500 mt-2">Uploading...</p>}
+  </div>
 
-      {/* Display Name */}
-      <div>
-        <label className="md:text-[18px] text-[16px] tracking-tight font-HelveticaMid">Display Name</label>
-        <input
-          {...register("display_name")}
-          className="w-full border rounded px-3 py-2 md:text-[18px] text-[16px] font-HelveticaLight"
-        />
-        {errors.display_name && <p className="text-red-500 text-sm">{errors.display_name.message}</p>}
-      </div>
+  {/* Display Name */}
+  <div className="mb-6">
+    <label className="text-sm font-medium font-HelveticaMid mb-2 block">Display Name</label>
+    <input
+      {...register("display_name")}
+      className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg  font-HelveticaReg"
+    />
+    {errors.display_name && <p className="text-red-500 text-sm mt-2">{errors.display_name.message}</p>}
+  </div>
 
-      {/* Bio */}
-      <div>
-        <label className="md:text-[18px] text-[16px] tracking-tight font-HelveticaMid">Bio</label>
-        <textarea
-          {...register("bio")}
-          rows={3}
-          className="w-full border rounded px-3 py-2 md:text-[18px] text-[16px] font-HelveticaLight"
-        />
-      </div>
+  {/* Bio */}
+  <div className="mb-6">
+    <label className="text-sm font-medium font-HelveticaMid mb-2 block">Bio</label>
+    <textarea
+      {...register("bio")}
+      rows={3}
+      className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg font-HelveticaReg"
+    />
+  </div>
 
-      {/* Location */}
-      <div>
-        <label className="md:text-[18px] text-[16px] tracking-tight font-HelveticaMid">Location</label>
-        <input {...register("location")} className="w-full border rounded px-3 py-2 md:text-[18px] text-[16px] font-HelveticaLight" />
-      </div>
+  {/* Location */}
+  <div className="mb-6">
+    <label className="text-sm font-medium font-HelveticaMid mb-2 block">Location</label>
+    <input
+      {...register("location")}
+      className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg font-HelveticaReg"
+    />
+  </div>
 
-      {/* Social Links */}
-      <div>
-        <label className="md:text-[18px] text-[16px] tracking-tight font-HelveticaMid">LinkedIn</label>
-        <input {...register("socials.linkedin")} className="w-full border rounded px-3 py-2 md:text-[18px] text-[16px] font-HelveticaLight" />
-      </div>
+  {/* Social Links */}
+  <div className="mb-6">
+    <label className="text-sm font-medium font-HelveticaMid mb-2 block">LinkedIn</label>
+    <input
+      {...register("socials.linkedin")}
+      className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg font-HelveticaReg"
+    />
+  </div>
 
-      <div>
-        <label className="md:text-[18px] text-[16px] tracking-tight font-HelveticaMid">Twitter</label>
-        <input {...register("socials.twitter")} className="w-full border rounded px-3 py-2 md:text-[18px] text-[16px] font-HelveticaLight" />
-      </div>
+  <div className="mb-6">
+    <label className="text-sm font-medium font-HelveticaMid mb-2 block">Twitter</label>
+    <input
+      {...register("socials.twitter")}
+      className="w-full px-3 py-2 bg-transparent border border-gray-300 rounded-lg font-HelveticaReg"
+    />
+  </div>
+  </div>
 
-      <button
-        type="submit"
-        disabled={isPending}
-        className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 md:text-[18px] text-[16px] tracking-tight font-HelveticaMid"
-      >
-        {isPending ? "Saving..." : "Save Changes"}
-      </button>
-    </form>
+  
+
+    
+      
+   
+  <button
+    type="submit"
+    disabled={isPending}
+    className="w-full py-2 px-4 bg-black text-white cursor-pointer rounded-lg hover:bg-gray-800 font-HelveticaMid"
+  >
+    {isPending ? "Saving..." : "Save Changes"}
+  </button>
+    
+
+  
+
+  
+</form>
+
   );
 }

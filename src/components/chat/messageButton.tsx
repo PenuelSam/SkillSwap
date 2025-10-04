@@ -29,7 +29,7 @@ export default function MessageButton({ profileId }: MessageButtonProps) {
   return (
     <button
       onClick={handleStartChat}
-      className="px-6 py-2 cursor-pointer bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+      className="px-4 py-2 cursor-pointer bg-black text-white rounded-full font-HelveticaMid hover:bg-black/50 transition-colors"
     >
       Send Message
     </button>

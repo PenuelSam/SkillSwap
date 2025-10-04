@@ -118,7 +118,7 @@ export default async function PublicProfilePage({
   const offers = skills.filter((s) => s.type === "offer");
 
   return (
-  <div className="w-full min-h-screen bg-gray-100 flex flex-col items-center justify-center   p-4">
+  <div className="w-full min-h-screen bg-gray-100 flex flex-col items-center justify-center    p-4">
     {/* Back Button */}
     <div className="w-full max-w-4xl mx-auto flex justify-start mb-4">
       <button
@@ -129,7 +129,9 @@ export default async function PublicProfilePage({
       </button>
     </div>
     {/* Profile Card */}
-   <div className="w-full max-w-4xl mx-auto bg-white rounded-2xl shadow p-6 flex flex-col md:flex-row items-start gap-6">
+    
+    <div className="w-full h-full max-w-3xl mx-auto bg-white rounded-2xl shadow">
+   <div className="w-full max-w-4xl mx-auto  p-6 flex flex-col md:flex-row items-start gap-6">
            {/* Avatar */}
            <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
              {profile.avatar_url ? (
@@ -175,7 +177,7 @@ export default async function PublicProfilePage({
          </div>
 
     {/* Activity */}
-    <div className="w-full max-w-4xl mx-auto mt-5 bg-white p-6 rounded-xl shadow flex justify-around text-center">
+    <div className="w-full max-w-4xl mx-auto mt-5 p-6 flex justify-around text-center">
       <div>
         <p className="text-2xl font-HelveticaBold">{offers.length}</p>
         <p className="text-sm font-HelveticaLight text-gray-500">Skills Offered</p>
@@ -192,7 +194,7 @@ export default async function PublicProfilePage({
 
     {/* About & Socials */}
     <div className="w-full max-w-4xl mx-auto mt-5 grid md:grid-cols-2 gap-6">
-      <div className="bg-white p-6 rounded-xl shadow">
+      <div className=" p-6 ">
         <h2 className="md:text-[28px] text-[20px] tracking-tight font-HelveticaBold border-b-2 border-gray-200 pb-2">
           About
         </h2>
@@ -201,7 +203,7 @@ export default async function PublicProfilePage({
         </p>
       </div>
 
-      <div className="bg-white p-6 rounded-xl shadow">
+      <div className=" p-6 ">
         <h2 className="md:text-[28px] text-[20px] font-HelveticaBold border-b-2 border-gray-200 pb-2">
           Socials
         </h2>
@@ -222,7 +224,7 @@ export default async function PublicProfilePage({
 
     {/* Skills */}
     <div className="w-full max-w-4xl mx-auto mt-5 grid md:grid-cols-2 gap-6">
-      <div className="bg-white p-6 rounded-xl shadow">
+      <div className=" p-6 ">
         <h2 className="md:text-[28px] text-[20px] font-HelveticaBold border-b-2 border-gray-200 pb-2">
           Skills to Teach
         </h2>
@@ -238,7 +240,7 @@ export default async function PublicProfilePage({
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-xl shadow">
+      <div className=" p-6 ">
         <h2 className="md:text-[28px] text-[20px] font-HelveticaBold border-b-2 border-gray-200 pb-2">
           Skills to Learn
         </h2>
@@ -254,6 +256,7 @@ export default async function PublicProfilePage({
         </div>
       </div>
     </div>
+  </div>
   </div>
 );
 }

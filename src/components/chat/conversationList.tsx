@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { chatService, Conversation } from '@/lib/chatService';
 import { useUser } from '@supabase/auth-helpers-react';
 import { motion } from 'framer-motion';
+import { BsChatDots } from "react-icons/bs";
 
 interface ConversationListProps {
   onSelectConversation: (conversation: Conversation) => void;
@@ -20,6 +21,8 @@ export default function ConversationList({ onSelectConversation, selectedConvers
   useEffect(() => {
     loadConversations();
   }, []);
+
+  
 
   const loadConversations = async () => {
     try {
@@ -64,11 +67,11 @@ export default function ConversationList({ onSelectConversation, selectedConvers
 
   return (
     <div className="h-full w-full bg-white border-r border-gray-200 overflow-y-auto">
-      <div className="bg-white p-4">
-        <h2 className="text-xl font-semibold text-gray-900">Messages</h2>
+      <div className="bg-white h-16 px-4 flex items-center border-b border-gray-200">
+        <h2 className="text-xl font-HelveticaBold text-gray-900">Messages</h2>
       </div>
       
-      <div className="divide-y divide-gray-100">
+      <div className="divide-y  divide-gray-100">
         {conversations.map((conversation) => (
           <motion.button
             key={conversation.id}
@@ -79,15 +82,15 @@ export default function ConversationList({ onSelectConversation, selectedConvers
               selectedConversationId === conversation.id ? 'bg-blue-50 border-r-2 border-blue-600' : ''
             }`}
           >
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center  space-x-3">
               <div className="relative">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200">
+                <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200">
                   {conversation.other_user?.avatar_url ? (
                     <Image
                       src={conversation.other_user.avatar_url}
                       alt={conversation.other_user.display_name || 'User'}
-                      width={48}
-                      height={48}
+                      width={40}
+                      height={40}
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -96,29 +99,42 @@ export default function ConversationList({ onSelectConversation, selectedConvers
                     </div>
                   )}
                 </div>
-                {conversation.unread_count && conversation.unread_count > 0 && (
+                {/* {conversation.unread_count && conversation.unread_count > 0 && (
                   <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
                     <span className="text-xs text-white font-medium">
                       {conversation.unread_count > 9 ? '9+' : conversation.unread_count}
                     </span>
                   </div>
-                )}
+                )} */}
               </div>
               
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between">
-                  <p className="md:text-[16px] text-[14px] font-HelveticaMid text-gray-700">
-                    {conversation.other_user?.display_name || 'Unknown User'}
-                  </p>
-                  {conversation.last_message && (
-                    <span className="md:text-[14px] text-[12px] font-HelveticaLight text-gray-500">
-                      {formatTime(conversation.last_message.created_at)}
-                    </span>
-                  )}
+                  <div>
+                    <p className="md:text-[14px] text-[14px] font-HelveticaMid text-gray-700">
+                      {conversation.other_user?.display_name || 'Unknown User'}
+                    </p>
+                    <p className="md:text-[14px] text-[14px] font-HelveticaLight text-gray-700 truncate max-w-[200px]">
+                      {conversation.last_message?.content || 'No messages yet'}
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-end justify-center space-x-1">
+                    
+                    {conversation.last_message && (
+                      <span className="md:text-[12px] text-[12px] font-HelveticaLight text-gray-500">
+                        {formatTime(conversation.last_message.created_at)}
+                      </span>
+                    )}
+                    {conversation.unread_count && conversation.unread_count > 0 && (
+                     <div className="w-5 h-5 bg-gray-500 rounded-full flex items-center justify-center">
+                        <span className="text-xs text-white font-HelveticaMid">
+                          {conversation.unread_count > 9 ? '9+' : conversation.unread_count}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <p className="md:text-[16px] text-[14px] font-HelveticaLight text-gray-700">
-                  {conversation.last_message?.content || 'No messages yet'}
-                </p>
+                
               </div>
             </div>
           </motion.button>
@@ -127,11 +143,9 @@ export default function ConversationList({ onSelectConversation, selectedConvers
 
       {conversations.length === 0 && (
         <div className="flex flex-col items-center justify-center h-64 text-gray-500">
-          <svg className="w-12 h-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-          <p className="text-center">No conversations yet</p>
-          <p className="text-sm text-center">Start chatting with other users!</p>
+          <BsChatDots fontSize={48} className="mb-4" />
+          <p className="text-center font-HelveticaMid">No conversations yet</p>
+          <p className="text-sm text-center font-HelveticaMid">Start chatting with other users!</p>
         </div>
       )}
     </div>
